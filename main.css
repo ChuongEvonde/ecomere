@@ -522,6 +522,28 @@ a{
     color: var(--text-color);
 }
 
+.up{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: var(--text-color);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: fixed;
+    bottom: 12rem;
+    right: 1rem;
+    z-index: 1000;
+    cursor: pointer;
+    transition: 0.35s ;
+    visibility: hidden;
+}
+.up .bx{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--title-color);
+}
+/* ----------------media-------------- */
 @media screen and (max-width:1023px){
     .header{
         min-height: calc(100vh - 10rem);
@@ -583,7 +605,11 @@ a{
         justify-content: center;
         align-items: center;
     }
-    
+    .up{
+        bottom: 5rem;
+        padding: 8px;
+        font-size: 16px;
+    }
  }
 @media screen and (max-width:768px){
     /* .footer{
@@ -722,11 +748,12 @@ a{
         margin-top: 7rem;
     }
 }
-
-@media screen and (max-width:345px){
+@media screen and (max-width:380px){
     .services-item{
-        width: 300px;
+        width: 32rem;
     }
+}
+@media screen and (max-width:345px){
     .menu-item{
         width: 300px;
     }
