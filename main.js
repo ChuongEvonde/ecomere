@@ -32,6 +32,18 @@ links.forEach((link) => {
     menu.classList.remove("active");
   });
 });
+
+const cartBox = document.querySelector(".cart-box");
+const cartIcon = document.querySelector(".icon-cart");
+const cartClose = document.querySelector(".close-cart");
+cartIcon.addEventListener("click", () => {
+  cartBox.classList.add("active");
+  up.style.visibility = "hidden";
+});
+cartClose.addEventListener("click", () => {
+  cartBox.classList.remove("active");
+  up.style.visibility = "visible";
+});
 // ---------render----------
 const Menus = [
   {
@@ -90,13 +102,54 @@ function renderMenu(Menus) {
     </div>
     <h4 class="menu-item-title">${item.title}</h4>
     <div class="menu-order">
-      <a href="#" class="btn menu-btn">Order Now</a>
+      <a href="#" class="btn menu-btn btn-order">Order Now</a>
       <span class="price">${item.price}</span>
     </div>
   </li>`;
   });
   const item = menuItem.join("");
   menuList.innerHTML = item;
+}
+// ------------add cart-------------
+
+const btnOrders = document.querySelectorAll(".btn-order");
+const cartList = document.querySelector(".cart-list");
+const cartBuy = document.querySelector(".cart-buynow");
+btnOrders.forEach((btnOrder) => {
+  btnOrder.addEventListener("click", addMenu);
+});
+
+function addMenu(e) {
+  e.preventDefault();
+  const element = e.target.parentElement.parentElement;
+  const menuImage = element.querySelector(".menu-img");
+  const menuTitle = element.querySelector(".menu-item-title");
+  const menuPrice = element.querySelector(".price");
+  creatCartBox(menuImage, menuPrice, menuTitle);
+  if (cartList.children.length > 0) {
+    cartBuy.style.display = "block";
+  }
+}
+function creatCartBox(img, price, title) {
+  const element = document.createElement("div");
+  element.classList.add("cart-item");
+  element.innerHTML = `<img src="${img.src}" alt="" class="cart-img" />
+  <div class="cart-data">
+    <h3 class="menu-item-title cart-item-title">${title.textContent}</h3>
+    <p class="price">${price.textContent}</p>
+  </div>
+  <div class="cart-item-icon">
+    <i class="bx bxs-trash-alt"></i>
+  </div>`;
+  cartList.appendChild(element);
+  const cratIcon = element.querySelector(".cart-item-icon");
+  cratIcon.addEventListener("click", (e) => {
+    const item = e.currentTarget.parentElement;
+    cartList.removeChild(item);
+    if (cartList.children.length === 0) {
+      cartBuy.style.display = "none";
+    }
+  });
 }
 // ----------scroll-----
 const sr = ScrollReveal({
@@ -114,9 +167,12 @@ sr.reveal(`.btn-exp, .btn-cri`, { delay: 500 });
 sr.reveal(`.btn-play`, { delay: 600 });
 sr.reveal(`.header-icon`, { delay: 700 });
 sr.reveal(`.header-img`, { origin: "bottom" });
-sr.reveal(`.header-group`, { origin: "rigth" });
+sr.reveal(`.header-group`, { origin: "top" });
 sr.reveal(`.countdown-list, .services-list`, { interval: 100 });
-sr.reveal(`.about-img,.footer-copyright `, { origin: "left", interval: 100 });
-sr.reveal(`.about-data, .footer-social`, { origin: "rigth" });
-sr.reveal(`.btn-sub`, { origin: "rigth" });
+sr.reveal(`.about-img,.footer-copyright, .footer-social `, {
+  origin: "left",
+  interval: 100,
+});
+sr.reveal(`.about-data`, { origin: "left" });
+sr.reveal(`.btn-sub`, { delay: 400 });
 sr.reveal(`.footer-data`, { origin: "bottom", delay: 400, interval: 100 });

@@ -543,6 +543,97 @@ a{
     font-weight: 600;
     color: var(--title-color);
 }
+.icon-cart{
+    position: absolute;
+    right:20%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+/* --------box-cart------------- */
+.icon-cart .bx{
+    font-size: 28px;
+    font-weight: 400;
+    cursor: pointer;
+    color:var(--text-color);
+    transition: 0.35s;
+}
+.icon-cart .bx:hover{
+    color: var(--btn-color);
+}
+
+.header-top.active .icon-cart .bx:hover{
+    color: var(--btn-color);
+}
+.header-top.active .icon-cart .bx{
+    color:var(--main-color)
+}
+.cart-title{
+    margin-top: 3rem;
+    color: #1F0A00;
+    font-weight: 600;
+    text-align: center;
+}
+.cart-box{
+    position: absolute;
+    top:0;
+    right: -100%;
+    width: 40rem;
+    background-color: var(--text-color);
+    height: 100vh;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.35s ease;
+    overflow-y: scroll;
+}
+.cart-box.active{
+    right: 0;
+}
+.cart-box .title{
+    margin-top: 3rem;
+}
+.close-cart{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10000;
+    cursor: pointer;
+}
+.close-cart .icon-close{
+    font-size: 25px;
+    font-weight: 600;
+}
+.cart-list{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem 0;
+    margin: 2rem 0 4rem;
+}
+.cart-item{
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+.cart-item-icon{
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    
+}
+
+.cart-buynow{
+    display: none;
+}
 /* ----------------media-------------- */
 @media screen and (max-width:1023px){
     .header{
@@ -564,6 +655,7 @@ a{
         min-height: 100vh;
         justify-content: center;
         transition: 0.3s ease;
+        z-index: 1000;
  
     }
     .nav-menu.active{
@@ -609,6 +701,16 @@ a{
         bottom: 5rem;
         padding: 8px;
         font-size: 16px;
+    }
+    .icon-cart{
+        line-height: 7rem;
+       padding-top: 3rem; ;
+    }
+    .header-top.active .icon-cart{
+        padding-bottom: 3rem;
+    }
+    .icon-car{
+        right: 10%;
     }
  }
 @media screen and (max-width:768px){
@@ -662,6 +764,10 @@ a{
      min-width: 10rem;
      width: 22rem;
   }
+  .cart-item-title{
+      font-size: 18px;
+  }
+ 
   
 }
 @media screen and (max-width:669px){
@@ -747,11 +853,21 @@ a{
     .footer{
         margin-top: 7rem;
     }
+    .cart-box{
+        width: 80%;
+    }
+    .icon-cart{
+       font-size: 16px;
+    }
 }
 @media screen and (max-width:380px){
     .services-item{
         width: 32rem;
     }
+    .cart-item-title{
+        font-size: 14px;
+    }
+ 
 }
 @media screen and (max-width:345px){
     .menu-item{
@@ -760,6 +876,7 @@ a{
     .btn{
         padding: 8px 18px;
     }
+  
 }
 @media screen and (max-width:336px){
     .menu-toggle{
